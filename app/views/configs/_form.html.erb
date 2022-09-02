@@ -1,0 +1,112 @@
+<%= form_with(model: config) do |form| %>
+  <% if config.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(config.errors.count, "error") %> prohibited this config from being saved:</h2>
+
+      <ul>
+        <% config.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :active_config, style: "display: block" %>
+    <%= form.check_box :active_config %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :hotfolder, style: "display: block" %>
+    <%= form.text_field :hotfolder %>
+  </div>
+
+  <div>
+    <%= form.label :max_time, style: "display: block" %>
+    <%= form.number_field :max_time %>
+  </div>
+
+  <div>
+    <%= form.label :day, style: "display: block" %>
+    <%= form.number_field :day %>
+  </div>
+
+  <div>
+    <%= form.label :load_teams, style: "display: block" %>
+    <%= form.check_box :load_teams %>
+  </div>
+
+  <div>
+    <%= form.label :csv_delimiter, style: "display: block" %>
+    <%= form.text_field :csv_delimiter %>
+  </div>
+
+  <div>
+    <%= form.label :unique_id, style: "display: block" %>
+    <%= form.text_field :unique_id %>
+  </div>
+
+  <div>
+    <%= form.label :firstname, style: "display: block" %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div>
+    <%= form.label :lastname, style: "display: block" %>
+    <%= form.text_field :lastname %>
+  </div>
+
+  <div>
+    <%= form.label :entry_class, style: "display: block" %>
+    <%= form.text_field :entry_class %>
+  </div>
+
+  <div>
+    <%= form.label :gender, style: "display: block" %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div>
+    <%= form.label :classifier, style: "display: block" %>
+    <%= form.text_field :classifier %>
+  </div>
+
+  <div>
+    <%= form.label :time, style: "display: block" %>
+    <%= form.text_field :time %>
+  </div>
+
+  <div>
+    <%= form.label :school, style: "display: block" %>
+    <%= form.text_field :school %>
+  </div>
+
+  <div>
+    <%= form.label :team, style: "display: block" %>
+    <%= form.text_field :team %>
+  </div>
+
+  <div>
+    <%= form.label :jrotc, style: "display: block" %>
+    <%= form.text_field :jrotc %>
+  </div>
+
+  <div>
+    <%= form.label :other_class, style: "display: block" %>
+    <%= form.text_field :other_class %>
+  </div>
+
+  <div>
+    <%= form.label :other_class_title, style: "display: block" %>
+    <%= form.text_field :other_class_title %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
