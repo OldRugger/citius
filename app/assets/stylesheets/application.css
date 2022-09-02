@@ -1,0 +1,165 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body {
+  background-color: #282c34;
+}
+a {
+  color: lightgrey;
+}
+
+.App {
+  text-align: center;
+  color: lightgrey;
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 3vmin);
+  border-bottom: 3px solid rgb(87, 1, 1);
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.App-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 3vmin);
+  border-top: 3px solid rgb(87, 1, 1);
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+h1 {
+  color: white;
+}
+
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr {
+  background-color: rgb(112, 1, 1);  
+  height: 1px;
+  border: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.awt-header {
+  width: 100%;
+  background-color: rgb(112, 1, 1);
+  border-bottom: 2px solid rgb(87, 1, 1);
+  font-weight: bold;
+  font-size: 14px;
+  color: lightgrey;
+}
+.awt-day-header {
+  width: 100%;
+  background-color: darkgrey;
+  color: darkred;
+  border-bottom: 1px solid rgb(87, 1, 1);
+  font-weight: bold;
+}
+.awt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.awt-col-header {
+  font-weight: bold;
+}
+.awt-row-header {
+  font-weight: bold;
+}
+.awt-rules {
+  text-align: left;
+  padding: 40px;
+}
+.team-header {
+  width: 100%;
+  background-color: rgb(112, 1, 1);
+  border-top: 2px solid rgb(87, 1, 1);
+  border-bottom: 2px solid rgb(87, 1, 1);
+  font-weight: bold;
+  font-size: 14px;
+  color: lightgrey;
+}
+.teams-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.teams-row-header {
+  width: 100%;
+  background-color: darkgrey;
+  color: darkred;
+  border-bottom: 1px solid rgb(87, 1, 1);
+  font-weight: bold;
+}
+.team-results {
+  vertical-align: text-top;
+  text-align: left;
+}
+.team-detail-row-header {
+  width: 100%;
+  border: 3px solid rgb(87, 1, 1);
+  font-weight: bold;
+  background-color: rgb(51, 49, 49);
+}
+
+.team-detail-column-header {
+  border: 3px solid rgb(87, 1, 1);
+  font-weight: bold;
+}
+
+.cell-left {
+  text-align: left;
+}
+.import-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.runners-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.team-name a {
+  font-weight: bold;
+  color: rgb(218, 32, 32);
+}
+
+#configs {
+  padding-bottom: 20px;
+}
+
+.config_index_table{
+  width: 500px;  
+  margin-right: auto;
+  margin-left: auto; 
+  padding: 10px; 
+}  

@@ -1,0 +1,43 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  active_config: false
+  title: MyString
+  hotfolder: MyString
+  max_time: 1
+  day: 1
+  load_teams: false
+  csv_delimiter: MyString
+  unique_id: MyString
+  firstname: MyString
+  lastname: MyString
+  entry_class: MyString
+  gender: MyString
+  classifier: MyString
+  time: MyString
+  school: MyString
+  team: MyString
+  jrotc: MyString
+  other_class: MyString
+  other_class_title: MyString
+
+two:
+  active_config: false
+  title: MyString
+  hotfolder: MyString
+  max_time: 1
+  day: 1
+  load_teams: false
+  csv_delimiter: MyString
+  unique_id: MyString
+  firstname: MyString
+  lastname: MyString
+  entry_class: MyString
+  gender: MyString
+  classifier: MyString
+  time: MyString
+  school: MyString
+  team: MyString
+  jrotc: MyString
+  other_class: MyString
+  other_class_title: MyString

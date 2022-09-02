@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Configurations</h2>
+
+<div id="configs">
+  <table class=config_index_table>
+  <% @configs.each do |config| %>
+    <tr>
+      <td>
+        <%= link_to "#{config.name}", config %>
+      </td>
+      <td>
+        <% if config.active_config %>
+          Active 
+        <% else %> 
+          <%= button_to "Set active", action: "set_active", id: config.id %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+  <%= link_to "New config", new_config_path %>
+</div>

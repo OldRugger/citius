@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Citius</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class=App>
+      <div class=App-header>
+        <%= Config.where(active_config: true).order(:id).first.title %> 
+      </div>  
+      <%= yield %>
+      <div class=App-footer>
+        <%= Config.where(active_config: true).order(:id).first.host_club %> 
+      </div>
+    </div>  
+  </body>
+</html>
