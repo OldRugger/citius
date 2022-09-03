@@ -21,4 +21,10 @@ class Config < ApplicationRecord
     other_class_title: nil,
   }
 
+  def self.create_default_config
+    debugger;
+    config = Config.create(Config::DEFAULT_VALUES)
+    config.update(set_active: true) if Config.count == 1
+    config 
+  end  
 end
