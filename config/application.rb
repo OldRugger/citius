@@ -18,5 +18,24 @@ module Citius
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.after_initialize do
+      if defined?(::Rails::Server) 
+        puts 'Init hotfolder'
+        hotfolder = Config.find_by(active_config: true).hotfolder
+        listener = Listen.to(hotfolder) do |modified, added, removed|
+          if added.length > 0
+            Rails.logger.info "call TeamResults"
+            TeamResults.new.perform(added)
+            Rails.logger.info "added file: #{added}"
+          end
+          if removed.length > 0
+            Rails.logger.info "removed file : #{removed}"
+          end
+        end
+        listener.start
+      else
+        puts 'Skip hotfolder'
+      end    
+    end
   end
 end
