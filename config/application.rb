@@ -22,7 +22,12 @@ module Citius
       if defined?(::Rails::Server) || "test".include?(Rails.env)
         puts 'Init hotfolder'
         Config.create_default_config if Config.count == 0
-        hotfolder = Config.find_by(active_config: true).hotfolder
+        current_config = Config.find_by(active_config: true)
+        if current_config
+          hotfolder = current_config.hotfolder
+        else  
+          hotfolder = 'results' unless hotfolder
+        end  
         listener = Listen.to(hotfolder) do |modified, added, removed|
           if added.length > 0
             Rails.logger.info "call TeamResults"

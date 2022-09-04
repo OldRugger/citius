@@ -13,11 +13,18 @@
   <body>
     <div class=App>
       <div class=App-header>
-        <%= Config.where(active_config: true).order(:id).first.title %> 
+        <% active_config = Config.where(active_config: true).order(:id).first %>
+        <% if active_config %>
+          <%= link_to Config.where(active_config: true).order(:id).first.title, controller: "home" %>
+        <% else %>  
+          no active config
+        <% end %>  
       </div>  
       <%= yield %>
       <div class=App-footer>
-        <%= Config.where(active_config: true).order(:id).first.host_club %> 
+        <% if active_config %>
+          <%= Config.where(active_config: true).order(:id).first.host_club %> 
+        <% end %>  
       </div>
     </div>  
   </body>
