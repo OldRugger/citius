@@ -1,7 +1,8 @@
+<p style="color: green"><%= notice %></p>
 <div class=home>
+ <%= button_to "Clear Results", action: "clear_results" %>	
 <h2><%= link_to "Configurations", controller: "configs" %></h2>
-<h2>Clear Results</h2>
-<h2>Reesults</h2>
+<h2><%= link_to "Results", controller: "runners" %></h2>
 <h2>Team Results</h2>
 <h2>Team</h2>
 <h2>Individual Awards (based on AWT)</h2>
