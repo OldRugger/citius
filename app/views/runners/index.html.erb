@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Runners</h2>
+
+<table class="runners-table"> 
+  <body>
+  	<% columns = @runners.columns %>
+  	<tr>
+	  	<% columns.each do |c| %>
+	  	  <th><%= c.name %></th>
+	    <% end %>  
+	</tr>    	 
+    <% @runners.each do |r| %>
+      <tr>
+      	<% columns.each do |c| %>
+      	  <td><%= r[c.name] %></td>
+      	<% end %>
+      </tr>	
+    <% end %>  
+
+  </body>
+</table>
+
+
