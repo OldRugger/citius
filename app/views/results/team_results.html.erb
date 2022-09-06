@@ -1,0 +1,56 @@
+<div class='awt-header'>
+  Average Weighted Time
+</div>	
+  <table class='awt-table'>
+  	<tbody>
+  	  <tr class='awt-day-header'>	
+        <td colspan=9>Day 1</td>
+        <td colspan=9>Day 2</td>          
+      </tr> 
+      
+      <tr class='awt-col-header'>
+        <% 2.times do %>
+          <td>Class</td>
+          <% @class_list.each do |c| %>
+            <td><%= c %></td>
+          <% end %>
+        <% end %>
+      </tr>
+      <tr>
+      	<td>AWT</td>
+          <% @class_list.each do |c| %>
+            <td><%= @awt[:day1][c] ? @awt[:day1][c][:awt] : 'N/A'  %></td>
+          <% end %>
+
+      	<td>AWT</td>
+          <% @class_list.each do |c| %>
+            <td><%= @awt[:day2][c] ? @awt[:day2][c][:awt] : 'N/A' %></td>
+          <% end %>
+      </tr>		
+  	</tbody>
+  </table>	
+  <table class='teams-table'>
+  	<thead>
+  	 <tr class='teams-row-header'>
+  	 	<% @classes.each do |c| %>
+  	 	  <td><%= c[0].upcase %></td>
+        <% end %>  
+  	 </tr>
+  	 <tr class='team-results'>
+  	 	<% @classes.each do |c| %>
+  	 	  <td>
+  	 	  	<table>
+		  	    <% place = 0 %>
+		  	    <% team_results = c[1] %>
+		  	    <% team_results.each do |team| %>
+   		  	      <tr>
+			  	    <td><%= place += 1 %>
+			  	    <td><%= "#{team.name}(#{team.total_score.round(3)})" %></td>
+      		  	  </tr>	  
+		  	    <% end %>
+	  	 	</table>  
+          </td>
+        <% end %>  
+  	 </tr>
+  	</thead>
+  </table>
