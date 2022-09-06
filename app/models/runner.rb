@@ -13,7 +13,8 @@ class Runner < ApplicationRecord
   end
 
   def self.import_results_row(row)
-    @config = Config.last
+    @config = Config.find_by(active_config: true)
+    raise 'no active config' unless @config
     time_key = @config.time
     classifier_key = @config.classifier
     day = @config.day
