@@ -148,9 +148,19 @@ hr {
   border-collapse: collapse;
   font-size: 12px;
 }
-.team-name a {
+.team-name {
   font-weight: bold;
   color: rgb(218, 32, 32);
+}
+.team-school-name {
+  font-weight: bold;
+  font-style: italic;
+  color: aliceblue;
+}
+
+.team-day {
+  font-weight: bold;
+  color: aliceblue;
 }
 
 #configs {
