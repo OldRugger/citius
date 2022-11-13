@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   post "set_active" => 'configs#set_active'
 
-  post "clear_results" => 'home#clear_results'
+  post "clear_results" => 'results#clear_results'
+  get "team_results" => 'results#team_results'
 
   get "runners" => 'runners#index'
 
