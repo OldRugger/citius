@@ -152,6 +152,11 @@ hr {
   font-weight: bold;
   color: rgb(218, 32, 32);
 }
+
+.team-name a {
+  font-weight: bold;
+  color: rgb(218, 32, 32);
+}
 .team-school-name {
   font-weight: bold;
   font-style: italic;
@@ -208,4 +213,50 @@ hr {
 
 .printable-results td {
   vertical-align: top;
+}
+
+.individual-awards {
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  color: black;
+  vertical-align: top;
+}
+
+.individual-row-header {
+  background-color: darkred;
+  color: white;
+}
+
+.individual-awards-class {
+  width: 100%;
+}
+
+.individual-awards-class td {
+  vertical-align: top;
+}
+.cat {
+    border-bottom:1px solid black;
+    padding-top:2px;
+    padding-bottom:2px;
+    color:  black;
+}
+.cat2  {
+    padding-top:2px;
+    padding-bottom:2px;
+    color:  black;
+}
+.cat4  {
+    border-right:1px solid black;
+    padding-right:10px;
+    padding-top:2px;
+    padding-bottom:2px;
+    color:  black;
+}
+.cat5  {
+    padding-left:25px;
+    padding-top:2px;
+    padding-bottom:2px;
+    color:  black;
 }

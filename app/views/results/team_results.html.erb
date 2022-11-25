@@ -43,14 +43,13 @@
 		  	    <% place = 0 %>
 		  	    <% team_results = c[1] %>
 		  	    <% team_results.each do |team| %>
-              <% debug(team) %>
               <% day1_score = team.day1_score ? team.day1_score&.round(3) : 'N/A' %>
               <% day2_score = team.day2_score ? team.day2_score&.round(3) : 'N/A' %>
   	  	      <tr class='team-results'>
   			  	    <td><%= place += 1 %>
   			  	    <td>
                   <span class='team-name'>
-                    <%= "#{team.name}"%>
+                    <%= link_to team.name, :controller=> 'teams', :action => 'show', :id => team.id %>
                   </span>   
                   <%="(#{team.total_score.round(2)})" %> <br>
   			  	    	<span class='team-school-name'>
