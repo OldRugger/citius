@@ -39,8 +39,8 @@ def index
 
 
   def show
-    team = Team.find(params[:id])
-    runners = TeamMember.joins(:runner)
+    @team = Team.find(params[:id])
+    @runners = TeamMember.joins(:runner)
       .select("team_members.team_id, runners.id as runner_id,
               runners.firstname   as firstname,
               runners.surname     as surname,
@@ -54,7 +54,7 @@ def index
       .where(team_id: params[:id]).all
 
     awt = get_awt_hash
-    day1_hash = awt[:day1]
-    day2_hash = awt[:day2]
+    @day1_hash = awt[:day1]
+    @day2_hash = awt[:day2]
   end
 end

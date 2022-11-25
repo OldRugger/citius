@@ -1,0 +1,102 @@
+<table width = 100% style="border-collapse: collapse; order-spacing: 0;
+    margin: 0; padding: 0;">
+  <tr style="background-color:darkred">
+    <th align = center colspan=4><font color="white">
+      <%= @team.name %></font>
+    </th>
+  </tr>
+  <tr>
+    <td><b>Catetory:</b>
+      <%= @team.entryclass %>
+    </td>
+    <td><b>JROTC branch:</b>
+      <%= @team.JROTC_branch %>
+    </td>
+    <td>
+      <b>Day1 score:</b>
+      <%if @team.day1_score && @team.day1_score.round < 9999 %>
+        <%= @team.day1_score.round(2) %>
+      <%else%>
+        no score
+      <%end%>
+    </td>
+    <td>
+      <b>Day2 score:</b>
+      <%if @team.day1_score && @team.day2_score.round < 9999 %>
+        <%= @team.day2_score.round(2) %>
+      <%else%>
+        no score
+      <%end%>
+    </td>
+  </tr>
+</table>
+<table width=100% border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse; order-spacing: 0;
+    margin: 0; padding: 0;">
+  <tr style="background-color:LightGoldenRodYellow">
+    <th rowspan=2 class="cat2">Runner</th>
+    <th rowspan=2 class="cat2">Class</th>
+    <th colspan=4 class="cat">Day1</th>
+    <th colspan=4 class="cat">Day2</th>
+  </tr>
+  <tr style="background-color:LightGoldenRodYellow">
+    <th class="cat2">Time</th>
+    <th class="cat2">Class AWT</th>
+    <th class="cat2">Category AWT</th>
+    <th class="cat4">Score</th>
+    <th class="cat2">Time</th>
+    <th class="cat2">Class AWT</th>
+    <th class="cat2">Category AWT</th>
+    <th class="cat5">Score</th>
+  </tr>
+  <% @runners.each do |runner| %>
+    <tr>
+      <td class="cat3">
+        <b> <%= "#{runner.firstname} #{runner.surname}" %> </b>
+      </td>
+      <td class="cat3">
+        <%= runner.entryclass %>
+      </td>
+      <td class="cat3c">
+        <%= float_time_to_hhmmss(runner.float_time1) %>
+      </td>
+      <td class="cat3c">
+        <% if @day1_hash && @day1_hash[runner.entryclass] %>
+          <%= @day1_hash[runner.entryclass][:awt] %>
+        <% else %>
+          n/a
+        <% end %>
+      </td>
+      <td class="cat3c">
+        <% if @day1_hash && @day1_hash[runner.entryclass] %>
+          <%= @day1_hash[runner.entryclass][:cat] %>
+        <% else %>
+          n/a
+        <% end %>
+      </td>
+      <td class="cat3c">
+        <%= runner.day1_score.round(3) if runner.day1_score %>
+      </td>
+      <td class="cat3c">
+        <%= float_time_to_hhmmss(runner.float_time2) %>
+      </td>
+      <td class="cat3c">
+        <% if @day2_hash && @day2_hash[runner.entryclass] %>
+          <%= @day2_hash[runner.entryclass][:awt]  %>
+        <% else %>
+          n/a
+        <% end %>
+      </td>
+      <td class="cat3c">
+        <% if @day2_hash && @day2_hash[runner.entryclass] %>
+          <%= @day2_hash[runner.entryclass][:cat] %>
+        <% else %>
+          n/a
+        <% end %>
+      </td>
+      <td class="cat3c">
+        <%= runner.day2_score.round(3) if runner.day2_score %>
+      </td>
+    </tr>
+  <% end %>
+
+</table>

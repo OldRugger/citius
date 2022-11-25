@@ -1,6 +1,7 @@
 module ApplicationHelper
   CLASS_LIST =  ['ISVM', 'ISVF', 'ISJVM', 'ISJVF', 'ISIM', 'ISIF', 'ISPM', 'ISPF'].freeze
   CAT_LIST = ['isv', 'isjv', 'isi', 'isp', 'jrotc']
+  CAT_LIST_NO_JROTC = ['isv', 'isjv', 'isi', 'isp']
 
   def float_time_to_hhmmss(float_time)
     if (float_time && float_time > 0)
