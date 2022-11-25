@@ -157,6 +157,10 @@ hr {
   font-style: italic;
   color: aliceblue;
 }
+.team-school-name-results {
+  font-weight: bold;
+  font-style: italic;
+}
 
 .team-day {
   font-weight: bold;
@@ -173,3 +177,35 @@ hr {
   margin-left: auto; 
   padding: 10px; 
 }  
+
+.awt_rules {
+  text-align: left;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 3px solid rgb(87, 1, 1);
+  padding-bottom: 10px;
+}
+
+.printable-results {
+  background-color: white;
+  color: black;
+}
+
+.teams_index {
+  vertical-align: top;
+  background-color: yellowgreen;
+  border-collapse: collapse;
+}
+
+.teams_index_cat_header {
+  background-color: yellowgreen;
+}
+
+.printable-results table {
+  width: 100%;
+  vertical-align: top;
+}
+
+.printable-results td {
+  vertical-align: top;
+}

@@ -1,0 +1,109 @@
+<div class='printable-results'>
+	<div class='awt-header'>
+	  Average Weighted Time
+	</div>	
+	<table class='awt-table'>
+	  <tbody>
+	    <tr class='awt-day-header'>	
+	      <td colspan=9>Day 1</td>
+	      <td colspan=9>Day 2</td>          
+	    </tr> 
+	  
+	    <tr class='awt-col-header'>
+	      <% 2.times do %>
+	        <td>Class</td>
+	        <% @class_list.each do |c| %>
+	          <td><%= c %></td>
+	        <% end %>
+	      <% end %>
+	    </tr>
+	    <% 1.upto(3) do |i| %>
+	    	<tr>
+	        <% 1.upto(2) do |day| %>
+		      <td>Runner<%= i %></td>
+			      <% @class_list.each do |c| %>
+			        <td><%= @awt[day]["#{c}#{i}"] ?  @awt[day]["#{c}#{i}"] : 'NA' %></td>
+			      <% end %>
+	  		  <% end %>  
+		    </tr>  
+	    <% end %>	
+	    <tr>
+		  	</tr>		
+		  <% 1.upto(2) do |day| %>
+			    <td>AWT</td>
+			    <% @class_list.each do |c| %>
+			      <td><%= @awt[day][c] ? @awt[day][c] : 'NA' %></td>
+			    <% end %>
+			  <% end %>
+	  </tbody>
+	</table>	
+		<div class='awt-header'>
+	  Team results
+	</div>	
+	<table class='teams_index'>
+		<tr >
+			<% @cat_list.each do |c| %>
+				  <% if @teams[c] && @teams[c].count > 0 %>
+				  <td > 
+			  		<%= c.upcase %>
+				  	<% place = 0 %>
+				  	<table bgcolor="white">
+				  		<%  @teams[c].each do |t| %>
+					  		<tr>
+					  			<td>
+					  				<b><%= place += 1 %></b>
+					  			</td>
+					  			<td align="left">
+					  				<span class='team-name'>
+					  					<%= t.name %> (<%= t.total_score.round(2) %>) 
+                    </span>
+					  				<br> 
+					  				<span class='team-school-name-results'>
+					  					<%= t.school %> 
+					  				</span>
+					  				- Day 1 (<%= t.day1_score.round(3)%> -
+					  				 Day 2 (<%= t.day2_score.round(3)%>)
+					  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
+					  				 <%      .select('*').order('runners.surname, runners.firstname')%>
+					  				<table>
+					  				  <tr>
+					  				  	 <th>
+					  				 	  	 Runner
+					  				 	 	</th>
+					  				  	 <th>
+					  				 	  	 Day 1
+					  				 	 	</th>
+					  				  	 <th>
+					  				 	  	 Day 2
+					  				 	 	</th>
+					  				  </tr>
+					  				  <% runners.each do |r| %>
+						  		 		  <tr>
+						  				  	<td>
+						  				 	  	 <%= r.firstname %> <%= r.surname %>
+						  				 	 	</td>
+						  				    <td align="center">
+						  				    	<% if r.time1  %>
+						  				 	  	  <%= r.time1[-8..-1] %> (<%= r.day1_score.round(3) %>)
+						  				 	  	<% end %>  
+						  				 	 	</td>
+						  				  	 <td align="center">
+						  				  	 	<% if r.time2 %>
+						  				 	  	  <%= r.time2[-8..-1] %> (<%= r.day1_score.round(3) %>)
+						  				 	  	<% end %>
+						  				 	 	</td>
+						  				 	</tr>
+					  				  <% end %>
+					  				 </table>
+					  			</td>
+					  		</tr>
+					  	<% end %>	
+				  	</table>
+				  </td>
+				<% end %>  
+			<% end %>  
+			</tr>  
+		</tr>
+	</table>
+</div>
+

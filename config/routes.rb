@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   resources :configs
 
-  post "set_active" => 'configs#set_active'
+  post 'set_active' => 'configs#set_active'
+  post 'clear_results' => 'results#clear_results'
 
-  post "clear_results" => 'results#clear_results'
-  get "team_results" => 'results#team_results'
+  get 'team_results' => 'results#team_results'
+  get 'awt' => 'results#awt'
 
-  get "runners" => 'runners#index'
+  get 'runners' => 'runners#index'
+
+  get 'teams' => 'teams#index'
 
   root :to => 'home#index'
 

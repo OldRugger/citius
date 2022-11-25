@@ -14,13 +14,19 @@ class ResultsController < ApplicationController
   end
 
   def team_results
-    @class_list =  ApplicationHelper::CLASS_LIST
+    @class_list = ApplicationHelper::CLASS_LIST
     @awt = get_awt_hash
     @classes = get_teams_by_class
     get_results_by_day(@awt)
   end
 
-  private
+  def awt
+    @awt = get_awt_with_runners
+    @class_list = ApplicationHelper::CLASS_LIST
+  end
+
+
+private
 
 def get_teams_by_class
     isp = Team.where(entryclass: 'ISP').order(:sort_score, :day1_score, :name)
