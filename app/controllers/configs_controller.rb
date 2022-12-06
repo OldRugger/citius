@@ -13,7 +13,7 @@ class ConfigsController < ApplicationController
 
   # GET /configs/new
   def new
-    @config = Config.new(config_defaults)
+    @config = Config.create_default_config
   end
 
   # GET /configs/1/edit
@@ -76,6 +76,6 @@ class ConfigsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def config_params
-      params.require(:config).permit(:active_config, :title, :hotfolder, :max_time, :day, :load_teams, :csv_delimiter, :unique_id, :firstname, :lastname, :entry_class, :gender, :classifier, :time, :school, :team, :jrotc, :other_class, :other_class_title)
+      params.require(:config).permit(:name, :active_config, :title, :hotfolder, :max_time, :day, :load_teams, :csv_delimiter, :unique_id, :firstname, :lastname, :entry_class, :gender, :classifier, :time, :school, :team, :jrotc, :other_class, :other_class_title)
     end
 end

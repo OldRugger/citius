@@ -19,7 +19,7 @@ module Citius
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.after_initialize do
-      if defined?(::Rails::Server) || "test".include?(Rails.env)
+      if defined?(::Rails::Server) || "test".include?(Rails.env) 
         puts 'Init hotfolder'
         Config.create_default_config if Config.count == 0
         current_config = Config.find_by(active_config: true)

@@ -7,7 +7,7 @@
   <% @configs.each do |config| %>
     <tr>
       <td>
-        <%= link_to "#{config.name}", config %>
+        <%= link_to "#{config.name || 'no name'}", config %>
       </td>
       <td>
         <% if config.active_config %>

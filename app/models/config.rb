@@ -5,7 +5,7 @@ class Config < ApplicationRecord
     hotfolder: 'results',
     max_time: 180,
     day: 1,
-    load_teams: false,
+    load_teams: true,
     csv_delimiter: ';',
     unique_id: 'Stno',
     firstname: 'First name',
@@ -22,9 +22,9 @@ class Config < ApplicationRecord
   }
 
   def self.create_default_config
-    debugger;
     config = Config.create(Config::DEFAULT_VALUES)
-    config.update(set_active: true) if Config.count == 1
+    config.update(active_config: true) if Config.count == 1
+    config.save 
     config 
   end  
 end
