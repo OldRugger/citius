@@ -6,8 +6,10 @@ RSpec.describe TeamResults, type: :job do
     before(:all) do
       clear_all_results
       # load day 1 results
-      config = Config.find_by(active_config: true)
-      config.update(day: 1)
+      configuration = Config.find_by(active_config: true)
+      configuration = Config.create_default_config unless configuration  
+      configuration.update(day: 1)
+
       source = file_fixture("OE0014_day_one_results.csv")
       @target = File.join(".", "tmp/OE0014_day_one_results.csv")
       FileUtils.cp(source, @target)
@@ -63,7 +65,49 @@ RSpec.describe TeamResults, type: :job do
       expect(isif.awt_float_time).to equal(47.07222222222222)
     end
 
-    # TODO - add validations for runner and team scores
+    it "should assign teams" do
+      expect(Team.count).to equal(47)
+      expect(Team.where.not(JROTC_branch: nil).count).to equal(22)
+      expect(Team.where(entryclass: 'ISV').count).to equal(13)
+      expect(Team.where(entryclass: 'ISJV').count).to equal(18)
+      expect(Team.where(entryclass: 'ISI').count).to equal(6)
+      expect(Team.where(entryclass: 'ISJV').count).to equal(18)
+      expect(Team.where(entryclass: 'ICC').count).to equal(3)
+      expect(Team.where(entryclass: 'ICJV').count).to equal(4)
+      expect(Team.where(entryclass: 'ICV').count).to equal(3)
+    end
+
+    it "should calculate the Average Waited Times- ICC" do
+      iccm = Day1Awt.where(entryclass: "ICCM").order("runner1_float_time").first
+      iccf = Day1Awt.where(entryclass: "ICCF").order("runner1_float_time").first
+      expect(iccm.runner1_float_time).to equal(26.333333333333332)
+      expect(iccm.runner2_float_time).to equal(33.266666666666666)
+      expect(iccm.runner3_float_time).to equal(34.21666666666667)
+      expect(iccm.awt_float_time).to equal(31.272222222222222)
+      expect(iccf.runner1_float_time).to equal(36.233333333333334)
+      expect(iccf.runner2_float_time).to equal(nil)
+      expect(iccf.runner3_float_time).to equal(nil)
+      expect(iccf.awt_float_time).to equal(36.233333333333334)
+    end
+
+    it "should calculate the Average Waited Times- ICJV" do
+      iccm = Day1Awt.where(entryclass: "ICJVM").order("runner1_float_time").first
+      iccf = Day1Awt.where(entryclass: "ICJVF").order("runner1_float_time").first
+      expect(iccm.runner1_float_time).to equal(32.46666666666667)
+      expect(iccm.awt_float_time).to equal(34.588888888888896)
+      expect(iccf.runner1_float_time).to equal(71.28333333333333)
+      expect(iccf.awt_float_time).to equal(91.70833333333334)
+    end
+
+    it "should calculate the Average Waited Times- ICV" do
+      iccm = Day1Awt.where(entryclass: "ICVM").order("runner1_float_time").first
+      iccf = Day1Awt.where(entryclass: "ICVF").order("runner1_float_time").first
+      expect(iccm.runner1_float_time).to equal(54.18333333333333)
+      expect(iccm.awt_float_time).to equal(57.28888888888889)
+      expect(iccf.runner1_float_time).to equal(76.7)
+      expect(iccf.awt_float_time).to equal(85.68888888888891)
+    end
+
   end
 end
 

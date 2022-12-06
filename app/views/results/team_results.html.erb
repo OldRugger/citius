@@ -45,6 +45,7 @@
 		  	    <% team_results.each do |team| %>
               <% day1_score = team.day1_score ? team.day1_score&.round(3) : 'N/A' %>
               <% day2_score = team.day2_score ? team.day2_score&.round(3) : 'N/A' %>
+              <% day2_score = 'N/A' if day2_score == 9999.0 %>
   	  	      <tr class='team-results'>
   			  	    <td><%= place += 1 %>
   			  	    <td>

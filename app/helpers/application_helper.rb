@@ -1,7 +1,18 @@
 module ApplicationHelper
   CLASS_LIST =  ['ISVM', 'ISVF', 'ISJVM', 'ISJVF', 'ISIM', 'ISIF', 'ISPM', 'ISPF'].freeze
-  CAT_LIST = ['isv', 'isjv', 'isi', 'isp', 'jrotc']
-  CAT_LIST_NO_JROTC = ['isv', 'isjv', 'isi', 'isp']
+  CAT_LIST = ['isv', 'isjv', 'isi', 'isp']
+  CAT_LIST_NO_JROTC = ['isv', 'isjv', 'isi']
+
+  def time_to_value(classifier, time, float_time)
+    return 'OT'  if classifier === '5'  # Over Time
+    return 'DSQ' if classifier === '4'  # disqualified
+    return 'MP'  if classifier === '3'  # Missed Punch
+    return 'DNF' if classifier === '2'  # Did not finish
+    return 'DNS' if classifier === '1'  # Did not start
+    time = float_time_to_hhmmss(float_time)
+    time
+  end
+
 
   def float_time_to_hhmmss(float_time)
     if (float_time && float_time > 0)

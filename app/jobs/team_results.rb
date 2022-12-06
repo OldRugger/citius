@@ -2,7 +2,6 @@ require 'csv'
 
 # This class load the 2 day results file and clculates the team scores.
 class TeamResults
-  include SuckerPunch::Job
   include ApplicationHelper
   include JobsHelper
 
@@ -24,6 +23,9 @@ class TeamResults
     calculate_awt_by_class("ISI")
     calculate_awt_by_class("ISJV")
     calculate_awt_by_class("ISV")
+    calculate_awt_by_class("ICC")
+    calculate_awt_by_class("ICJV")
+    calculate_awt_by_class("ICV")
   end
 
   def calculate_awt_by_class(team_class)

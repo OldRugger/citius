@@ -11,13 +11,38 @@ def index
     isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
     isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
     isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
-    jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    # jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
 
-    @teams = { 'isv'   => isv,
-               'isjv'  => isjv,
-               'isi'   => isi,
-               'isp'   => isp,
-               'jrotc' => jrotc }
+    @is_teams = { 'isv'   => isv,
+                  'isjv'  => isjv,
+                  'isi'   => isi,
+                  'isp'   => isp }
+
+    jrotc_isp = Team.where(entryclass: 'ISP').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    jrotc_isi = Team.where(entryclass: 'ISI').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    jrotc_isjv = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+    jrotc_isv = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+           
+    @jrotc_teams = { 'isv'   => jrotc_isv,
+                     'isjv'  => jrotc_isjv,
+                     'isi'   => jrotc_isi,
+                     'isp'   => jrotc_isp }
+    
+    config = Config.where(active_config: true).first
+    if config.other_class 
+      other_class = config.other_class
+      other_isp = Team.where(entryclass: 'ISP').where(JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
+      other_isi = Team.where(entryclass: 'ISI').where(JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
+      other_isjv = Team.where(entryclass: 'ISJV').where(JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
+      other_isv = Team.where(entryclass: 'ISV').where(JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
+      @other_teams = { 'isv'   => other_isv,
+                       'isjv'  => other_isjv,
+                       'isi'   => other_isi,
+                       'isp'   => other_isp, 
+                       'title' => config.other_class_title }
+    else
+      @other_teams = nil
+    end  
 
     @runners = TeamMember.joins(:runner, :team)
       .select("team_members.team_id, runners.id as runner_id,

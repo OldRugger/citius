@@ -19,6 +19,7 @@ class Runner < ApplicationRecord
     classifier_key = @config.classifier
     day = @config.day
     runner = self.find_or_create_runner(row)
+    raise "Runner not found for #{row}" unless runner
     float_time, time = self.get_float_time_from_value(row, time_key)
     if day == 1
       runner.time1 = time
@@ -80,6 +81,7 @@ class Runner < ApplicationRecord
   end
 
   def self.create_runner(row)
+    return unless @config.load_teams
     runner = Runner.create(database_id: row[@config.unique_id],
       surname: row[@config.lastname].gsub("'"){"\\'"},
       firstname: row[@config.firstname].gsub("'"){"\\'"},

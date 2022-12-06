@@ -52,6 +52,7 @@ class Team < ApplicationRecord
   # match name, school and entry class and no other assignment.
   def self.assign_runner_to_team(team, runner, row, config)
     raise "error: runner already assigned to a team " if TeamMember.where(runner_id: runner.id).first
+    debugger if team.entryclass == nil
     raise "error: invalid entry class #{row}" unless runner.entryclass.include? team.entryclass
     raise "error: runner first name does not match #{row}" unless runner.firstname = row[config.firstname].gsub("'"){"\\'"}
     raise "error: runner last name does not match #{row}" unless runner.surname = row[config.lastname].gsub("'"){"\\'"}
@@ -60,7 +61,6 @@ class Team < ApplicationRecord
   end
 
   def self.get_team_entry_class(entry_class)
-
     team_entry_class = nil
     case entry_class
       when 'ISPM', 'ISPF'
@@ -71,6 +71,12 @@ class Team < ApplicationRecord
         team_entry_class = 'ISJV'
       when 'ISVM', 'ISVF'
         team_entry_class = 'ISV'
+      when 'ICCM', 'ICCF'
+        team_entry_class = 'ICC'
+      when 'ICJVM', 'ICJVF'
+        team_entry_class = 'ICJV'
+      when 'ICVM', 'ICVF'
+        team_entry_class = 'ICV'
     end
     team_entry_class
   end
