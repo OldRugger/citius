@@ -71,7 +71,7 @@ hr {
   background-color: rgb(112, 1, 1);
   border-bottom: 2px solid rgb(87, 1, 1);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   color: lightgrey;
 }
 .awt-day-header {
@@ -198,12 +198,18 @@ hr {
 
 .teams_index {
   vertical-align: top;
-  background-color: yellowgreen;
   border-collapse: collapse;
+  border-style: solid;
 }
 
 .teams_index_cat_header {
   background-color: yellowgreen;
+  border-collapse: collapse;
+  border: blue;
+}
+
+.teams_results {
+  border-color: yellowgreen;
 }
 
 .printable-results table {

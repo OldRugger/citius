@@ -2,8 +2,10 @@ class TeamsController < ApplicationController
 
 def index
     @class_list = ApplicationHelper::CLASS_LIST
-
     @cat_list =  ApplicationHelper::CAT_LIST
+
+    @ic_class_list = ApplicationHelper::IC_CLASS_LIST
+    @ic_cat_list =  ApplicationHelper::IC_CAT_LIST
 
     awt = get_awt_with_runners
 
@@ -11,7 +13,6 @@ def index
     isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
     isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
     isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
-    # jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
 
     @is_teams = { 'isv'   => isv,
                   'isjv'  => isjv,
@@ -43,6 +44,15 @@ def index
     else
       @other_teams = nil
     end  
+
+    icc = Team.where(entryclass: 'ICC').order(:sort_score, :day1_score, :name)
+    icjv = Team.where(entryclass: 'ICJV').order(:sort_score, :day1_score, :name)
+    icv = Team.where(entryclass: 'ICV').order(:sort_score, :day1_score, :name)
+
+    @ic_teams = { 'icv'  => icv,
+                  'icjv' => icjv,
+                  'icc'  => icc }
+    
 
     @runners = TeamMember.joins(:runner, :team)
       .select("team_members.team_id, runners.id as runner_id,

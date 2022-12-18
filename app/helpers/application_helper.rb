@@ -3,6 +3,10 @@ module ApplicationHelper
   CAT_LIST = ['isv', 'isjv', 'isi', 'isp']
   CAT_LIST_NO_JROTC = ['isv', 'isjv', 'isi']
 
+  IC_CLASS_LIST =  ['ICVM', 'ICVF', 'ICJVM', 'ICJVF', 'ICCM', 'ICCF'].freeze
+  IC_CAT_LIST = ['icv', 'icjv', 'icc']
+
+
   def time_to_value(classifier, time, float_time)
     return 'OT'  if classifier === '5'  # Over Time
     return 'DSQ' if classifier === '4'  # disqualified
