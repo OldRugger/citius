@@ -87,7 +87,9 @@ class Runner < ApplicationRecord
       firstname: row[@config.firstname].gsub("'"){"\\'"},
       school: row[@config.school].gsub("'"){"\\'"},
       entryclass: row[@config.entry_class],
-      gender: row[@config.gender])
+      gender: row[@config.gender],
+      jrotc: row[@config.jrotc],
+      is_individual_eligible: row['IsIndividualEligible'] == 'Yes' ? true : false)
     Team.assign_member(row, runner) if row[@config.team]
     runner
   end
