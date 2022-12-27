@@ -1,6 +1,10 @@
 class TeamsController < ApplicationController
 
-def index
+  def team_list
+    @teams = Team.all.order(:school, :name, :entryclass)
+  end
+
+  def index
     @class_list = ApplicationHelper::CLASS_LIST
     @cat_list =  ApplicationHelper::CAT_LIST
 
@@ -9,10 +13,10 @@ def index
 
     awt = get_awt_with_runners
 
-    isp = Team.where(entryclass: 'ISP').order(:sort_score, :day1_score, :name)
-    isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
-    isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
-    isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
+    isp = Team.where(entryclass: 'ISP', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+    isi = Team.where(entryclass: 'ISI', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+    isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+    isv = Team.where(entryclass: 'ISV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
 
     @is_teams = { 'isv'   => isv,
                   'isjv'  => isjv,

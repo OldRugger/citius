@@ -14,7 +14,7 @@
  *= require_self
  */
 body {
-  background-color: #282c34;
+  background-color: #051c49;
 }
 a {
   color: lightgrey;
@@ -106,6 +106,15 @@ hr {
   font-size: 14px;
   color: lightgrey;
 }
+.team-results-header {
+  width: 100%;
+  background-color: rgb(112, 1, 1);
+  border-top: 2px solid rgb(87, 1, 1);
+  border-bottom: 2px solid rgb(87, 1, 1);
+  font-weight: bold;
+  font-size: 18px;
+  color: lightgrey;
+}
 .teams-table {
   width: 100%;
   border-collapse: collapse;
@@ -150,7 +159,7 @@ hr {
 }
 .team-name {
   font-weight: bold;
-  color: rgb(218, 32, 32);
+  color: rgb(203, 0, 0);
 }
 
 .team-name a {

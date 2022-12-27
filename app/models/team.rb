@@ -46,7 +46,8 @@ class Team < ApplicationRecord
     Team.create(name: team_name,
                 entryclass: team_entry_class,
                 JROTC_branch:jrotc,
-                school: school_name)
+                school: school_name,
+                is_team_eligible: true)
   end
 
   # match name, school and entry class and no other assignment.

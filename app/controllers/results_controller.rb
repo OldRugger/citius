@@ -46,15 +46,19 @@ class ResultsController < ApplicationController
     @class_list = ApplicationHelper::CLASS_LIST
   end
 
+  def ic_awt
+    @awt = get_awt_with_runners
+    @class_list = ApplicationHelper::IC_CLASS_LIST
+  end
+
 
 private
 
   def get_is_teams_by_class
-      isp = Team.where(entryclass: 'ISP').order(:sort_score, :day1_score, :name)
-      isi = Team.where(entryclass: 'ISI').order(:sort_score, :day1_score, :name)
-      isjv = Team.where(entryclass: 'ISJV').order(:sort_score, :day1_score, :name)
-      isv = Team.where(entryclass: 'ISV').order(:sort_score, :day1_score, :name)
-      # jrotc = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+      isp = Team.where(entryclass: 'ISP', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+      isi = Team.where(entryclass: 'ISI', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+      isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+      isv = Team.where(entryclass: 'ISV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
 
       classes = { 'isv'   => isv,
                   'isjv'  => isjv,
@@ -139,6 +143,7 @@ private
         end
       end
     end
+    results_str = '' if results_str.nil? 
     day_hash[team_name] = {"results": results_str, "id": team_id} if results_str
   end
 
