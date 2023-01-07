@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_02_201738) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_18_205110) do
   create_table "configs", force: :cascade do |t|
     t.boolean "active_config"
     t.string "title"
@@ -94,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_201738) do
     t.float "day2_score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "jrotc"
+    t.boolean "is_individual_eligible"
     t.index ["database_id"], name: "index_runners_on_database_id", unique: true
   end
 
@@ -117,6 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_201738) do
     t.string "school"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "is_team_eligible"
   end
 
 end

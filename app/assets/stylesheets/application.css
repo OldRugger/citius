@@ -14,7 +14,7 @@
  *= require_self
  */
 body {
-  background-color: #282c34;
+  background-color: #051c49;
 }
 a {
   color: lightgrey;
@@ -71,7 +71,7 @@ hr {
   background-color: rgb(112, 1, 1);
   border-bottom: 2px solid rgb(87, 1, 1);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   color: lightgrey;
 }
 .awt-day-header {
@@ -104,6 +104,15 @@ hr {
   border-bottom: 2px solid rgb(87, 1, 1);
   font-weight: bold;
   font-size: 14px;
+  color: lightgrey;
+}
+.team-results-header {
+  width: 100%;
+  background-color: rgb(112, 1, 1);
+  border-top: 2px solid rgb(87, 1, 1);
+  border-bottom: 2px solid rgb(87, 1, 1);
+  font-weight: bold;
+  font-size: 18px;
   color: lightgrey;
 }
 .teams-table {
@@ -150,7 +159,7 @@ hr {
 }
 .team-name {
   font-weight: bold;
-  color: rgb(218, 32, 32);
+  color: rgb(203, 0, 0);
 }
 
 .team-name a {
@@ -198,12 +207,18 @@ hr {
 
 .teams_index {
   vertical-align: top;
-  background-color: yellowgreen;
   border-collapse: collapse;
+  border-style: solid;
 }
 
 .teams_index_cat_header {
   background-color: yellowgreen;
+  border-collapse: collapse;
+  border: blue;
+}
+
+.teams_results {
+  border-color: yellowgreen;
 }
 
 .printable-results table {

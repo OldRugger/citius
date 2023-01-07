@@ -1,9 +1,10 @@
 <table class='individual-awards' border="1">
+  <% max_awards = 3 %>
   <tr class='individual-row-header' >
-    <th align = center colspan=2 class="awt"><font color="white">Individual Awards</font></th>
+    <th align = center colspan=2 class="awt"><font color="white">Interscholastic Individual Awards</font></th>
   </tr>
   <% @cat_list.each do |c| %>
-    <% if @awards["#{c}m"].count > 0 &&  @awards["#{c}f"].count %>
+    <% if @is_awards["#{c}m"].count > 0 &&  @is_awards["#{c}f"].count %>
       
       <tr bgcolor=" yellowgreen">
         <th> <%= c.upcase %> Male </th>
@@ -24,7 +25,7 @@
                 Total Score
               </th>
             <tr>  
-            <% @awards["#{c}m"].each do |result| %>
+            <% @is_awards["#{c}m"].each do |result| %>
               <tr>
                 <td width=10%>
                   <b><%= place += 1 %></b>
@@ -36,7 +37,7 @@
                 </td>
                 <td><b><%=result.total.round(2)%></b></td>
               </tr>
-              <% break if place > 9 %>
+              <% break if place >= max_awards %>
             <% end %> 
           </table>
         </td>
@@ -54,7 +55,7 @@
                 Total Score
               </th>
             <tr>            
-            <% @awards["#{c}f"].each do |result| %>
+            <% @is_awards["#{c}f"].each do |result| %>
             
               <tr>
                 <td width=10%>
@@ -67,7 +68,244 @@
                 </td>
                 <td><b><%=result.total.round(2)%></b></td>
               </tr>
-              <% break if place > 9 %>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+      </tr>
+    <% end %>    
+  <% end %> 
+</table>
+
+
+<table class='individual-awards' border="1">
+  <tr class='individual-row-header' >
+    <th align = center colspan=2 class="awt"><font color="white">JROTC Individual Awards</font></th>
+  </tr>
+  <% @cat_list.each do |c| %>
+    <% if @jrotc_awards["#{c}m"].count > 0 &&  @jrotc_awards["#{c}f"].count %>
+      
+      <tr bgcolor=" yellowgreen">
+        <th> <%= c.upcase %> Male </th>
+        <th> <%= c.upcase %> Female </th>
+      <tr>  
+      <tr> 
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>  
+            <% @jrotc_awards["#{c}m"].each do |result| %>
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>            
+            <% @jrotc_awards["#{c}f"].each do |result| %>
+            
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+      </tr>
+    <% end %>    
+  <% end %> 
+</table>
+
+<table class='individual-awards' border="1">
+  <% max_awards = 3 %>
+  <tr class='individual-row-header' >
+    <th align = center colspan=2 class="awt"><font color="white"><%= @other_class %> Individual Awards</font></th>
+  </tr>
+  <% @cat_list.each do |c| %>
+    <% if @other_awards["#{c}m"].count > 0 &&  @other_awards["#{c}f"].count %>
+      
+      <tr bgcolor=" yellowgreen">
+        <th> <%= c.upcase %> Male </th>
+        <th> <%= c.upcase %> Female </th>
+      <tr>  
+      <tr> 
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>  
+            <% @other_awards["#{c}m"].each do |result| %>
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>            
+            <% @other_awards["#{c}f"].each do |result| %>
+            
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+      </tr>
+    <% end %>    
+  <% end %> 
+</table>
+
+<table class='individual-awards' border="1">
+  <% max_awards = 3 %>
+  <tr class='individual-row-header' >
+    <th align = center colspan=2 class="awt"><font color="white">Intercollegiate Individual Awards</font></th>
+  </tr>
+  <% @ic_cat_list.each do |c| %>
+    <% if @ic_awards["#{c}m"].count > 0 &&  @ic_awards["#{c}f"].count %>
+      
+      <tr bgcolor=" yellowgreen">
+        <th> <%= c.upcase %> Male </th>
+        <th> <%= c.upcase %> Female </th>
+      <tr>  
+      <tr> 
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>  
+            <% @ic_awards["#{c}m"].each do |result| %>
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
+            <% end %> 
+          </table>
+        </td>
+        <td valign="top">
+          <% place = 0 %>
+          <table class='individual-awards-class'>
+            <tr>
+              <th>
+                Place
+              </th>
+              <th>
+                Runner
+              </th>
+              <th>
+                Total Score
+              </th>
+            <tr>            
+            <% @ic_awards["#{c}f"].each do |result| %>
+            
+              <tr>
+                <td width=10%>
+                  <b><%= place += 1 %></b>
+                </td>
+                <td>
+                  <b><%= result.firstname %> <%= result.surname %></b><br>
+                  <%= result.school%><br>
+                  Day1: <%=result.day1_score.round(3) %> Day2: <%=result.day2_score.round(3) %>
+                </td>
+                <td><b><%=result.total.round(2)%></b></td>
+              </tr>
+              <% break if place >= max_awards %>
             <% end %> 
           </table>
         </td>

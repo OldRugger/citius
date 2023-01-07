@@ -1,0 +1,79 @@
+<!-- <meta http-equiv = "refresh" content = "20; url = http://localhost:3000/team_results" /> -->
+
+<div class='awt-header'>
+  <%= link_to 'Intercollegiate Average Weighted Time', controller: 'results', action: 'awt' %>
+</div>	
+<table class='awt-table'>
+  <tbody>
+    <tr class='awt-day-header'> 
+      <td colspan=9>Day 1</td>
+      <td colspan=9>Day 2</td>          
+    </tr> 
+    
+    <tr class='awt-col-header'>
+      <% 2.times do %>
+        <td>Class</td>
+        <% @ic_class_list.each do |c| %>
+          <td><%= c %></td>
+        <% end %>
+      <% end %>
+    </tr>
+    <tr>
+      <td>AWT</td>
+        <% @ic_class_list.each do |c| %>
+          <td><%= @awt[:day1][c] ? @awt[:day1][c][:awt] : 'N/A'  %></td>
+        <% end %>
+
+      <td>AWT</td>
+        <% @ic_class_list.each do |c| %>
+          <td><%= @awt[:day2][c] ? @awt[:day2][c][:awt] : 'N/A' %></td>
+        <% end %>
+    </tr>   
+  </tbody>
+</table>  
+<div class='team-results-header'>
+  Intercollegiate Team Results
+</div>    
+<table class='teams-table'>
+  <thead>
+   <tr class='teams-row-header'>
+    <% @classes.each do |c| %>
+      <% next if c[1].size == 0 %>
+      <td><%= c[0].upcase %></td>
+    <% end %>  
+   </tr>
+   <tr class='team-results'>
+    <% @classes.each do |c| %>
+      <% next if c[1].size == 0 %>
+      <td>
+        <table>
+          <% place = 0 %>
+          <% team_results = c[1] %>
+          <% team_results.each do |team| %>
+            <% day1_score = team.day1_score ? team.day1_score&.round(3) : 'N/A' %>
+            <% day2_score = team.day2_score ? team.day2_score&.round(3) : 'N/A' %>
+            <% day2_score = 'N/A' if day2_score == 9999.0 %>
+            <tr class='team-results'>
+              <td><%= place += 1 %>
+              <td>
+                <span class='team-name'>
+                  <%= link_to team.name, :controller=> 'teams', :action => 'show', :id => team.id %>
+                </span>   
+                <%="(#{team.total_score.round(2)})" %> <br>
+                <span class='team-school-name'>
+                  <%=team.school%>
+                </span>
+                 Day 1 (<%= day1_score %>), Day 2 (<%= day2_score %>)
+                <br>
+                <span class='team-day'>Day 1:</span> <%= @awt[:day1][team.name][:results] %>
+                <br>
+                <span class='team-day'>Day 2:</span> <%= @awt[:day2][team.name][:results] %>
+              </td>
+            </tr>   
+          <% end %>
+      </table>  
+        </td>
+      <% end %>  
+   </tr>
+  </thead>
+</table>
