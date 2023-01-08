@@ -18,7 +18,8 @@ class Team < ApplicationRecord
     team_name = row[config.team].rstrip
     school_name = row[config.school].rstrip
     return if team_name == "0"
-    team = Team.where(name: team_name, school: school_name, entryclass: team_entry_class).first
+#    team = Team.where(name: team_name, school: school_name, entryclass: team_entry_class).first
+    team = Team.where(name: team_name, entryclass: team_entry_class).first
     team = create_team(team_name, school_name, row[config.jrotc], team_entry_class) if !team
     self.assign_runner_to_team(team, runner, row, config)
   end
@@ -43,9 +44,10 @@ class Team < ApplicationRecord
   end
 
   def self.create_team(team_name, school_name, jrotc, team_entry_class)
+    jrotc_branch = jrotc == 'None' ? nil : jrotc
     Team.create(name: team_name,
                 entryclass: team_entry_class,
-                JROTC_branch:jrotc,
+                JROTC_branch:jrotc_branch,
                 school: school_name,
                 is_team_eligible: true)
   end
@@ -57,6 +59,7 @@ class Team < ApplicationRecord
     raise "error: invalid entry class #{row}" unless runner.entryclass.include? team.entryclass
     raise "error: runner first name does not match #{row}" unless runner.firstname = row[config.firstname].gsub("'"){"\\'"}
     raise "error: runner last name does not match #{row}" unless runner.surname = row[config.lastname].gsub("'"){"\\'"}
+    team.update_column(:is_team_eligible, false) if row['ISteameligible'] != 'Eligible'
     TeamMember.create(team_id: team.id,
                       runner_id: runner.id)
   end

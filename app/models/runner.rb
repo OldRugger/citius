@@ -89,7 +89,7 @@ class Runner < ApplicationRecord
       entryclass: row[@config.entry_class],
       gender: row[@config.gender],
       jrotc: row[@config.jrotc],
-      is_individual_eligible: row['IsIndividualEligible'] == 'Yes' ? true : false)
+      is_individual_eligible: row['ISindividualeligible'] == 'Eligible' ? true : false)
     Team.assign_member(row, runner) if row[@config.team]
     runner
   end

@@ -69,19 +69,19 @@
 					  				<span class='team-school-name-results'>
 					  					<%= t.school %> 
 					  				</span>
-					  				- Day 1 (<%= t.day1_score.round(3)%>) -
+					  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 					  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 					  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 					  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 					  				<table>
 					  				  <tr>
-					  				  	 <th>
+					  				  	 <th width = 60%>
 					  				 	  	 Runner
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 20%>
 					  				 	  	 Day 1
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 20%>
 					  				 	  	 Day 2
 					  				 	 	</th>
 					  				  </tr>
@@ -121,7 +121,7 @@
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
 		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+			  <% if @jrotc_teams[c] && @jrotc_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -147,19 +147,19 @@
 					  				<span class='team-school-name-results'>
 					  					<%= t.school %> 
 					  				</span>
-					  				- Day 1 (<%= t.day1_score.round(3)%>) -
+					  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 					  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 					  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 					  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 					  				<table>
 					  				  <tr>
-					  				  	 <th>
+					  				  	 <th width = 60%>
 					  				 	  	 Runner
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 20%>
 					  				 	  	 Day 1
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 20%>
 					  				 	  	 Day 2
 					  				 	 	</th>
 					  				  </tr>
@@ -198,7 +198,7 @@
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
 		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+			  <% if @other_teams[c] && @other_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -224,18 +224,18 @@
 						  				<span class='team-school-name-results'>
 						  					<%= t.school %> 
 						  				</span>
-						  				- Day 1 (<%= t.day1_score.round(3)%>) -
+						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 						  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 						  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 						  				<table>
 						  				  <tr>
-						  				  	 <th>
+						  				  	 <th width = 60%>
 						  				 	  	 Runner
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 20%>
 						  				 	  	 Day 1
-						  				 	 	</th>
+						  				 	 	</th width = 20%>
 						  				  	 <th>
 						  				 	  	 Day 2
 						  				 	 	</th>
@@ -315,8 +315,8 @@
     </div>
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
-		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+		  <% @ic_cat_list.each do |c| %>
+			  <% if @ic_teams[c] && @ic_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -342,19 +342,19 @@
 						  				<span class='team-school-name-results'>
 						  					<%= t.school %> 
 						  				</span>
-						  				- Day 1 (<%= t.day1_score.round(3)%>) -
+						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 						  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 						  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 						  				<table>
 						  				  <tr>
-						  				  	 <th>
+						  				  	 <th width = 60%>
 						  				 	  	 Runner
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 20%>
 						  				 	  	 Day 1
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 20%>
 						  				 	  	 Day 2
 						  				 	 	</th>
 						  				  </tr>
