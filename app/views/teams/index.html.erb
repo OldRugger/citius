@@ -69,19 +69,19 @@
 					  				<span class='team-school-name-results'>
 					  					<%= t.school %> 
 					  				</span>
-					  				- Day 1 (<%= t.day1_score.round(3)%>) -
+					  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 					  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 					  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 					  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 					  				<table>
 					  				  <tr>
-					  				  	 <th>
+					  				  	 <th width = 40%>
 					  				 	  	 Runner
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 30%>
 					  				 	  	 Day 1
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 30%>
 					  				 	  	 Day 2
 					  				 	 	</th>
 					  				  </tr>
@@ -121,7 +121,7 @@
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
 		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+			  <% if @jrotc_teams[c] && @jrotc_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -147,19 +147,19 @@
 					  				<span class='team-school-name-results'>
 					  					<%= t.school %> 
 					  				</span>
-					  				- Day 1 (<%= t.day1_score.round(3)%>) -
+					  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 					  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 					  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 					  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 					  				<table>
 					  				  <tr>
-					  				  	 <th>
+					  				  	 <th width = 40%>
 					  				 	  	 Runner
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 30%>
 					  				 	  	 Day 1
 					  				 	 	</th>
-					  				  	 <th>
+					  				  	 <th width = 30%>
 					  				 	  	 Day 2
 					  				 	 	</th>
 					  				  </tr>
@@ -198,7 +198,7 @@
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
 		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+			  <% if @other_teams[c] && @other_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -224,18 +224,18 @@
 						  				<span class='team-school-name-results'>
 						  					<%= t.school %> 
 						  				</span>
-						  				- Day 1 (<%= t.day1_score.round(3)%>) -
+						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 						  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 						  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 						  				<table>
 						  				  <tr>
-						  				  	 <th>
+						  				  	 <th width = 40%>
 						  				 	  	 Runner
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 30%>
 						  				 	  	 Day 1
-						  				 	 	</th>
+						  				 	 	</th width = 30%>
 						  				  	 <th>
 						  				 	  	 Day 2
 						  				 	 	</th>
@@ -269,6 +269,87 @@
 			</tr>
 		</table>
   <% end %>  	
+
+
+  <% if @club_teams %>
+  	<div class='awt-header'>
+		  IS Club Team Results
+		</div>	
+	<table class='teams_index' border=1>
+    <tr class=teams_index_cat_header>
+		  <% @cat_list.each do |c| %>
+			  <% if @club_teams[c] && @club_teams[c].count > 0 %>
+				  <td>
+		  			<%= c.upcase %>
+		  		</td>	
+			  <% end %>
+			<% end %>  			
+    </tr>
+			<tr >
+				<% @cat_list.each do |c| %>
+					  <% if @club_teams[c] && @club_teams[c].count > 0 %>
+					  <td > 
+					  	<% place = 0 %>
+					  	<table bgcolor="white">
+					  		<% @club_teams[c].each do |t| %>
+						  		<tr>
+						  			<td>
+						  				<b><%= place += 1 %></b>
+						  			</td>
+						  			<td align="left">
+						  				<span class='team-name'>
+						  					<%= t.name %> (<%= t.total_score.round(2) %>) 
+	                    </span>
+						  				<br> 
+						  				<span class='team-school-name-results'>
+						  					Club Team  
+						  				</span>
+						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
+						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
+						  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
+						  				 <%      .select('*').order('runners.surname, runners.firstname')%>
+						  				<table>
+						  				  <tr>
+						  				  	 <th width = 40%>
+						  				 	  	 Runner
+						  				 	 	</th>
+						  				  	 <th width = 30%>
+						  				 	  	 Day 1
+						  				 	 	</th width = 30%>
+						  				  	 <th>
+						  				 	  	 Day 2
+						  				 	 	</th>
+						  				  </tr>
+						  				  <% runners.each do |r| %>
+							  		 		  <tr>
+							  				  	<td>
+							  				 	  	 <%= r.firstname %> <%= r.surname %>
+							  				 	 	</td>
+							  				    <td align="center">
+							  				    	<% if r.time1  %>
+							  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
+							  				 	  	<% end %>  
+							  				 	 	</td>
+							  				  	 <td align="center">
+							  				  	 	<% if r.time2 %>
+							  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
+							  				 	  	<% end %>
+							  				 	 	</td>
+							  				 	</tr>
+						  				  <% end %>
+						  				 </table>
+						  			</td>
+						  		</tr>
+						  	<% end %>	
+					  	</table>
+					  </td>
+					<% end %>  
+				<% end %>  
+				</tr>  
+			</tr>
+		</table>
+  <% end %>  	
+
 
   <div class='awt-header'>
 	 Intercollegiate Average Weighted Time
@@ -315,8 +396,8 @@
     </div>
 	<table class='teams_index' border=1>
     <tr class=teams_index_cat_header>
-		  <% @cat_list.each do |c| %>
-			  <% if @is_teams[c] && @is_teams[c].count > 0 %>
+		  <% @ic_cat_list.each do |c| %>
+			  <% if @ic_teams[c] && @ic_teams[c].count > 0 %>
 				  <td>
 		  			<%= c.upcase %>
 		  		</td>	
@@ -342,19 +423,19 @@
 						  				<span class='team-school-name-results'>
 						  					<%= t.school %> 
 						  				</span>
-						  				- Day 1 (<%= t.day1_score.round(3)%>) -
+						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
 						  				 <% runners = TeamMember.joins(:runner).where(team_id: t.id) %>
 						  				 <%      .select('*').order('runners.surname, runners.firstname')%>
 						  				<table>
 						  				  <tr>
-						  				  	 <th>
+						  				  	 <th width = 40%>
 						  				 	  	 Runner
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 30%>
 						  				 	  	 Day 1
 						  				 	 	</th>
-						  				  	 <th>
+						  				  	 <th width = 30%>
 						  				 	  	 Day 2
 						  				 	 	</th>
 						  				  </tr>
