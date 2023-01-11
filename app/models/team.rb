@@ -49,7 +49,8 @@ class Team < ApplicationRecord
                 entryclass: team_entry_class,
                 JROTC_branch:jrotc_branch,
                 school: school_name,
-                is_team_eligible: true)
+                is_team_eligible: true,
+                club: false)
   end
 
   # match name, school and entry class and no other assignment.
@@ -59,7 +60,7 @@ class Team < ApplicationRecord
     raise "error: invalid entry class #{row}" unless runner.entryclass.include? team.entryclass
     raise "error: runner first name does not match #{row}" unless runner.firstname = row[config.firstname].gsub("'"){"\\'"}
     raise "error: runner last name does not match #{row}" unless runner.surname = row[config.lastname].gsub("'"){"\\'"}
-    team.update_column(:is_team_eligible, false) if row['ISteameligible'] != 'Eligible'
+    # team.update_column(:is_team_eligible, false) if row['ISteameligible'] != 'Eligible'
     TeamMember.create(team_id: team.id,
                       runner_id: runner.id)
   end

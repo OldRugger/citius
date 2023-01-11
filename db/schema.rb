@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_205110) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_235544) do
   create_table "configs", force: :cascade do |t|
     t.boolean "active_config"
     t.string "title"
@@ -120,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_205110) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "is_team_eligible"
+    t.boolean "club"
   end
 
 end

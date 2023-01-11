@@ -13,15 +13,27 @@ class TeamsController < ApplicationController
 
     awt = get_awt_with_runners
 
-    isp = Team.where(entryclass: 'ISP', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-    isi = Team.where(entryclass: 'ISI', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-    isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-    isv = Team.where(entryclass: 'ISV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+    isp = Team.where(entryclass: 'ISP', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+    isi = Team.where(entryclass: 'ISI', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+    isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+    isv = Team.where(entryclass: 'ISV', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
 
     @is_teams = { 'isv'   => isv,
                   'isjv'  => isjv,
                   'isi'   => isi,
                   'isp'   => isp }
+
+    club_isp = Team.where(entryclass: 'ISP', is_team_eligible: true, club: true).order(:sort_score, :day1_score, :name)
+    club_isi = Team.where(entryclass: 'ISI', is_team_eligible: true, club: true).order(:sort_score, :day1_score, :name)
+    club_isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true, club: true).order(:sort_score, :day1_score, :name)
+    club_isv = Team.where(entryclass: 'ISV', is_team_eligible: true, club: true).order(:sort_score, :day1_score, :name)
+
+    @club_teams = { 'isv'   => club_isv,
+                    'isjv'  => club_isjv,
+                    'isi'   => club_isi,
+                    'isp'   => club_isp }
+
+
 
     jrotc_isp = Team.where(entryclass: 'ISP').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
     jrotc_isi = Team.where(entryclass: 'ISI').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
