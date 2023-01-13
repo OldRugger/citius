@@ -11,7 +11,7 @@
 <% if Config.where(active_config: true).first.other_class_title %>
   <h2><%= link_to "#{Config.where(active_config: true).first.other_class_title} Team Results", controller: 'results', action: 'other_team_results' %></h2>
 <% end %>
-<h2><%= link_to 'IS Club Team Results', controller: 'results', action: 'other_team_results' %></h2>
+<h2><%= link_to 'IS Club Team Results', controller: 'results', action: 'club_team_results' %></h2>
 <h2><%= link_to 'IC Team Results', controller: 'results', action: 'ic_team_results' %></h2>
 
 <h2><%= link_to 'Teams Results For Publishing', controller: 'teams', action: 'index' %></h2>
