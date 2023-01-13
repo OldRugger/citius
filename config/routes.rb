@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'team_results' => 'results#team_results'
   get 'jrotc_team_results' => 'results#jrotc_team_results'
   get 'other_team_results' => 'results#other_team_results'
+  get 'club_team_results' => 'results#club_team_results'
   get 'ic_team_results' => 'results#ic_team_results'
  
   get 'awt' => 'results#awt'

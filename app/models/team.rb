@@ -13,7 +13,7 @@ class Team < ApplicationRecord
   end
 
   def self.assign_member(row, runner)
-    config = Config.last
+    config = Config.find_by(active_config: true)
     team_entry_class = get_team_entry_class(row[config.entry_class])
     team_name = row[config.team].rstrip
     school_name = row[config.school].rstrip

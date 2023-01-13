@@ -1,7 +1,9 @@
 module ApplicationHelper
   CLASS_LIST =  ['ISVM', 'ISVF', 'ISJVM', 'ISJVF', 'ISIM', 'ISIF', 'ISPM', 'ISPF'].freeze
+  CLASS_LIST_JROTC =  ['ISVM', 'ISVF', 'ISJVM', 'ISJVF'].freeze
   CAT_LIST = ['isv', 'isjv', 'isi', 'isp']
   CAT_LIST_NO_JROTC = ['isv', 'isjv', 'isi']
+  CAT_LIST_JROTC = ['isv', 'isjv']
 
   IC_CLASS_LIST =  ['ICVM', 'ICVF', 'ICJVM', 'ICJVF', 'ICCM', 'ICCF'].freeze
   IC_CAT_LIST = ['icv', 'icjv', 'icc']

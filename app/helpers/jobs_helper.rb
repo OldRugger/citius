@@ -30,7 +30,7 @@ module JobsHelper
   def load_excel_file(file)
     $file_type = "xlsx"
     sheet = Roo::Spreadsheet.open(file).sheet(0).parse(headers: true)
-    config = Config.last
+    config = Config.find_by(active_config: true)
     sheet.each() do | row |
       Runner.import_results_row(row) if row[config.entry_class].start_with?('IS')
     end
@@ -38,7 +38,7 @@ module JobsHelper
 
   def load_csv_file(file)
     $file_type = "csv"
-    entry_class = Config.last.entry_class
+    entry_class = Config.find_by(active_config: true).entry_class
     ActiveRecord::Base.transaction do
       CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
         Runner.import_results_row(row) if row[entry_class]&.start_with?('IS') || row[entry_class]&.start_with?('IC')

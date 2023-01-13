@@ -41,9 +41,7 @@ class TeamsController < ApplicationController
     jrotc_isv = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
            
     @jrotc_teams = { 'isv'   => jrotc_isv,
-                     'isjv'  => jrotc_isjv,
-                     'isi'   => jrotc_isi,
-                     'isp'   => jrotc_isp }
+                     'isjv'  => jrotc_isjv }
     
     config = Config.where(active_config: true).first
     if config.other_class 
@@ -54,8 +52,6 @@ class TeamsController < ApplicationController
       other_isv = Team.where(entryclass: 'ISV').where(JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
       @other_teams = { 'isv'   => other_isv,
                        'isjv'  => other_isjv,
-                       'isi'   => other_isi,
-                       'isp'   => other_isp, 
                        'title' => config.other_class_title }
     else
       @other_teams = nil

@@ -29,8 +29,16 @@ class ResultsController < ApplicationController
 
   def other_team_results
     @class_list = ApplicationHelper::CLASS_LIST
+    @jrotc_class_list = ApplicationHelper::CAT_LIST_JROTC
     @awt = get_awt_hash
     @classes = get_other_teams_by_class
+    get_results_by_day(@awt)
+  end
+
+  def club_team_results
+    @class_list = ApplicationHelper::CLASS_LIST
+    @awt = get_awt_hash
+    @classes = get_club_teams_by_class
     get_results_by_day(@awt)
   end
 
@@ -55,10 +63,10 @@ class ResultsController < ApplicationController
 private
 
   def get_is_teams_by_class
-      isp = Team.where(entryclass: 'ISP', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-      isi = Team.where(entryclass: 'ISI', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-      isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
-      isv = Team.where(entryclass: 'ISV', is_team_eligible: true).order(:sort_score, :day1_score, :name)
+      isp = Team.where(entryclass: 'ISP', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+      isi = Team.where(entryclass: 'ISI', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+      isjv = Team.where(entryclass: 'ISJV', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
+      isv = Team.where(entryclass: 'ISV', is_team_eligible: true, club: false).order(:sort_score, :day1_score, :name)
 
       classes = { 'isv'   => isv,
                   'isjv'  => isjv,
@@ -68,16 +76,27 @@ private
   end
 
   def get_jrotc_teams_by_class
-      isp = Team.where(entryclass: 'ISP').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-      isi = Team.where(entryclass: 'ISI').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-      isjv = Team.where(entryclass: 'ISJV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
-      isv = Team.where(entryclass: 'ISV').where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+      isp = Team.where(entryclass: 'ISP', club: false).where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+      isi = Team.where(entryclass: 'ISI', club: false).where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+      isjv = Team.where(entryclass: 'ISJV', club: false).where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+      isv = Team.where(entryclass: 'ISV', club: false).where.not(JROTC_branch: nil).order(:sort_score, :day1_score, :name)
+   
+      classes = { 'isv'   => isv,
+                  'isjv'  => isjv }
+  end
+
+  def get_club_teams_by_class
+      isp = Team.where(entryclass: 'ISP', club: true).order(:sort_score, :day1_score, :name)
+      isi = Team.where(entryclass: 'ISI', club: true).order(:sort_score, :day1_score, :name)
+      isjv = Team.where(entryclass: 'ISJV', club: true).order(:sort_score, :day1_score, :name)
+      isv = Team.where(entryclass: 'ISV', club: true).order(:sort_score, :day1_score, :name)
    
       classes = { 'isv'   => isv,
                   'isjv'  => isjv,
                   'isi'   => isi,
                   'isp'   => isp }
   end
+
 
   def get_other_teams_by_class
       config = Config.where(active_config: true).first
@@ -89,9 +108,7 @@ private
       isv = Team.where(entryclass: 'ISV', JROTC_branch: other_class).order(:sort_score, :day1_score, :name)
    
       classes = { 'isv'   => isv,
-                  'isjv'  => isjv,
-                  'isi'   => isi,
-                  'isp'   => isp }
+                  'isjv'  => isjv }
   end
 
   def get_ic_teams_by_class
