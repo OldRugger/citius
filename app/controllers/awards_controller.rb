@@ -68,19 +68,19 @@ class AwardsController < ApplicationController
     @isvm = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
       "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISVM' and day1_score > 0 and day2_score > 0 order by total;")
     @isvf = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISVF' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISVF' and day1_score > 0 and day2_score > 0 order by total;")
     @isjvm = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISJVM' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}'and entryclass = 'ISJVM' and day1_score > 0 and day2_score > 0 order by total;")
     @isjvf = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISJVF' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISJVF' and day1_score > 0 and day2_score > 0 order by total;")
     @isim = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISIM' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISIM' and day1_score > 0 and day2_score > 0 order by total;")
     @isif = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISIF' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISIF' and day1_score > 0 and day2_score > 0 order by total;")
     @ispm = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISPM' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISPM' and day1_score > 0 and day2_score > 0 order by total;")
     @ispf = Runner.find_by_sql("SELECT firstname, surname, school, day1_score, day2_score, (day1_score + day2_score) as total " +
-      "FROM runners where jrotc IS NOT NULL and entryclass = 'ISPF' and day1_score > 0 and day2_score > 0 order by total;")
+      "FROM runners where jrotc = '#{@other_class}' and entryclass = 'ISPF' and day1_score > 0 and day2_score > 0 order by total;")
 
 
     @other_awards = { 
