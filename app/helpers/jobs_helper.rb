@@ -40,7 +40,7 @@ module JobsHelper
     $file_type = "csv"
     entry_class = Config.find_by(active_config: true).entry_class
     ActiveRecord::Base.transaction do
-      CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto ) do |row|
+      CSV.foreach(file, :headers => true, :col_sep=> ',', :skip_blanks=>true, :row_sep=>:auto, encoding:'iso-8859-1:utf-8' ) do |row|
         Runner.import_results_row(row) if row[entry_class]&.start_with?('IS') || row[entry_class]&.start_with?('IC')
       end
     end

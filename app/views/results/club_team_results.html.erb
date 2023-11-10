@@ -1,4 +1,4 @@
-<!-- <meta http-equiv = "refresh" content = "20; url = http://localhost:3000/ic_team_results" /> -->
+<meta http-equiv = "refresh" content = "20; url = http://localhost:3000/ic_team_results" />
 
 <div class='awt-header'>
   <%= link_to 'Interscholastic Average Weighted Time', controller: 'results', action: 'awt' %>
@@ -32,7 +32,7 @@
   	</tbody>
   </table>	
   <div class='team-results-header'>
-    Club Team Results
+    Interscholastic Club Team Results
   </div>    
   <table class='teams-table'>
   	<thead>
@@ -61,7 +61,7 @@
                   </span>   
                   <%="(#{team.total_score.round(2)})" %> <br>
   			  	    	<span class='team-school-name'>
-                    <%=team.school%>
+                    <%=team.school%> Club Team
                   </span>
                    Day 1 (<%= day1_score %>), Day 2 (<%= day2_score %>)
                   <br>

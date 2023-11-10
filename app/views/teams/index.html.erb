@@ -1,6 +1,6 @@
 <div class='printable-results'>
 	<div class='awt-header'>
-	  Interscholastic Average Weighted Time
+	  Interscholastic Average Weighted TimeS
 	</div>	
 	<table class='awt-table'>
 	  <tbody>
@@ -91,12 +91,12 @@
 						  				 	  	 <%= r.firstname %> <%= r.surname %>
 						  				 	 	</td>
 						  				    <td align="center">
-						  				    	<% if r.time1  %>
+						  				    	<% if r.time1 || r.classifier1 %>
 						  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
 						  				 	  	<% end %>  
 						  				 	 	</td>
 						  				  	 <td align="center">
-						  				  	 	<% if r.time2 %>
+						  				  	 	<% if r.day2_score  %>
 						  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
 						  				 	  	<% end %>
 						  				 	 	</td>
@@ -169,12 +169,12 @@
 						  				 	  	 <%= r.firstname %> <%= r.surname %>
 						  				 	 	</td>
 						  				    <td align="center">
-						  				    	<% if r.time1  %>
+						  				    	<% if r.time1 || r.classifier1 %>
 						  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
 						  				 	  	<% end %>  
 						  				 	 	</td>
 						  				  	 <td align="center">
-						  				  	 	<% if r.time2 %>
+						  				  	 	<% if r.day2_score %>
 						  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
 						  				 	  	<% end %>
 						  				 	 	</td>
@@ -246,12 +246,12 @@
 							  				 	  	 <%= r.firstname %> <%= r.surname %>
 							  				 	 	</td>
 							  				    <td align="center">
-							  				    	<% if r.time1  %>
+							  				    	<% if r.time1 || r.classifier1 %>
 							  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
 							  				 	  	<% end %>  
 							  				 	 	</td>
 							  				  	 <td align="center">
-							  				  	 	<% if r.time2 %>
+							  				  	 	<% if r.day2_score %>
 							  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
 							  				 	  	<% end %>
 							  				 	 	</td>
@@ -302,7 +302,7 @@
 	                    </span>
 						  				<br> 
 						  				<span class='team-school-name-results'>
-						  					Club Team  
+						  					<%= t.school %> Club Team  
 						  				</span>
 						  				- Day 1 (<%= t.day1_score == 9999.0 ? 'N/A' : t.day1_score.round(3)%>) -
 						  				 Day 2 (<%= t.day2_score == 9999.0 ? 'N/A' : t.day2_score.round(3)%>)
@@ -326,12 +326,12 @@
 							  				 	  	 <%= r.firstname %> <%= r.surname %>
 							  				 	 	</td>
 							  				    <td align="center">
-							  				    	<% if r.time1  %>
+							  				    	<% if r.time1 || r.classifier1  %>
 							  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
 							  				 	  	<% end %>  
 							  				 	 	</td>
 							  				  	 <td align="center">
-							  				  	 	<% if r.time2 %>
+							  				  	 	<% if r.day2_score %>
 							  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
 							  				 	  	<% end %>
 							  				 	 	</td>
@@ -445,12 +445,12 @@
 							  				 	  	 <%= r.firstname %> <%= r.surname %>
 							  				 	 	</td>
 							  				    <td align="center">
-							  				    	<% if r.time1  %>
+							  				    	<% if r.time1 || r.classifier1 %>
 							  				 	  	  <%= time_to_value(r.classifier1, r.time1, r.float_time1) %> (<%= r.day1_score.round(3) %>)
 							  				 	  	<% end %>  
 							  				 	 	</td>
 							  				  	 <td align="center">
-							  				  	 	<% if r.time2 %>
+							  				  	 	<% if r.day2_score %>
 							  				 	  	  <%= time_to_value(r.classifier2, r.time2, r.float_time2) %> (<%= r.day2_score.round(3) %>)
 							  				 	  	<% end %>
 							  				 	 	</td>

@@ -20,6 +20,7 @@ class Runner < ApplicationRecord
     day = @config.day
     runner = self.find_or_create_runner(row)
     raise "Runner not found for #{row}" unless runner
+    raise "Runnner in wrong class #{runner.entryclass} #{row}" if runner.entryclass != row[@config.entry_class]
     float_time, time = self.get_float_time_from_value(row, time_key)
     if day == 1
       runner.time1 = time
